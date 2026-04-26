@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
 import { createPayment } from '../controllers/payment.controller.js';
-import auth from '../middleware/auth.js';
-import rateLimiter from '../middleware/rateLimiter.js';
-import validate from '../middleware/requestValidator.js';
+import authMiddleware from '../middleware/auth.js';
+import limiter from '../middleware/rateLimiter.js';
+import validateRequest from '../middleware/requestValidator.js';
 
 const router = Router();
 
@@ -11,7 +11,7 @@ router.post(
     '/',
     auth,
     rateLimiter,
-    validate,
+    validateRequest,
     createPayment
 );
 
